@@ -11,9 +11,9 @@ from random import randint
 
 def individual(length, min, max):
   'Create a member of the population'
-  return [randint(min, max) for x in range(0,5)]
+  return [randint(min, max) for x in range(0,length)]
 
-individual(5,0,100)
+individual(6,0,100)
 
 individual(5,0,100)
 
@@ -55,9 +55,9 @@ def evolve(pop, target, retain=0.2, random_select=0.5, mutate=0.01):
   parents = graded[:retain_length]  # Select the parent from the population
   
   #  Randomly add other individuals to promote genetic diversity
-  for individual in graded[:retain_length]:
+  for individual in graded[retain_length:]:
     if random_select > random():
-      parent.append(individual)
+      parents.append(individual)
       
       
   #  Mutate some individual
@@ -86,7 +86,7 @@ def evolve(pop, target, retain=0.2, random_select=0.5, mutate=0.01):
 
 v_pop = population(100, 5, 0, 100)
 
-target = 201
+target = 190
 
 fitness_history = [grade(v_pop, target)]
 
@@ -108,3 +108,4 @@ for x in v_pop:
     print(x)
   
 print(vishal/len(v_pop)*100)
+
